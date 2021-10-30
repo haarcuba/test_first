@@ -1,7 +1,7 @@
 import pytest
 import socket
-from testix.frequentlyused import *
-from testix import patch_module
+from test_first.frequentlyused import *
+from test_first import patch_module
 from chatbot import chatbot
 
 class TestChatbot:

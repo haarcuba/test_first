@@ -1,5 +1,5 @@
-from testix import fake
-from testix import fake_privacy_violator
+from test_first import fake
+from test_first import fake_privacy_violator
 import uuid
 from . import base
 
