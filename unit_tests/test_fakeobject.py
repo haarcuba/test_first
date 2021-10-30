@@ -2,13 +2,13 @@ import hypothesis
 import hypothesis.strategies as strategies
 import pytest
 from test_first import fake
-from test_first import testixexception
+from test_first import test_first_exception
 
 class TestFakeObject:
     @hypothesis.given(text=strategies.text())
     def test_CallingFakeObject_WhileNoScenario_MustThrow(self, text):
         fakeObject = fake.Fake('hi_there')
-        with pytest.raises( testixexception.TestixError ):
+        with pytest.raises( test_first_exception.TestFirstError ):
             fakeObject(text)
 
     def test_FakeObjectImplicitCreation_OnlyOnce( self ):
