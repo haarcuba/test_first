@@ -1,12 +1,14 @@
-# TESTIX
+# TestFirst - A Test Driven Development (TDD) Python Mocking Framework
 
-Testix is a Mocking framework for Python, meant to be used with [pytest](https://docs.pytest.org/en/latest/).
+TestFirst is a Mocking framework for Python, meant to be used with [pytest](https://docs.pytest.org/en/latest/).
+
+TestFirst is especially designed for Test Driven Development.
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![GitHub release](version.svg)](https://GitHub.com/haarcuba/test_first/releases/)
 
 
-Testix is special because it allows you to specify what your mock objects do,
+TestFirst is special because it allows you to specify what your mock objects do,
 and it then enforces your specifications automatically. It also reduces (albeit
 not entirely) mock setup. Other frameworks usually have a flow like this:
 
@@ -14,7 +16,7 @@ not entirely) mock setup. Other frameworks usually have a flow like this:
 * let code do something with mock
 * assert mock used in correct way
 
-Testix flow is a bit different
+TestFirst flow is a bit different
 * setup mock objects (`sock` in the following example)
 * specify exactly what should happen to them using a Scenario context
 
@@ -24,7 +26,7 @@ Testix flow is a bit different
 * [Small Example](#small-example)
 * [Installation](#installation)
 * [Python 3 and Legacy Python](#legacy)
-* [Extended Example: Test Driven Development of a simple Chatbot object using Testix](#extended-example)
+* [Extended Example: Test Driven Development of a simple Chatbot object using TestFirst](#extended-example)
 * [Readability Options](#readability-options)
 * [Advantages over `unittest.mock`](#advantages-over-unittest-mock)
 * [Advanced Features](#advanced-features)
@@ -71,9 +73,9 @@ With `pip`:
 
 ## Python 3 and Legacy Python (Python 2) <a name="legacy"></a>
 
-Testix works with Python 3. It will not work with legacy python.
+TestFirst works with Python 3. It will not work with legacy python.
 
-# Extended Example: Test Driven Development of a simple Chatbot object using Testix <a name="extended-example"></a>
+# Extended Example: Test Driven Development of a simple Chatbot object using TestFirst <a name="extended-example"></a>
 
 In this example we will test a `Chatbot` object.
 The `Chatbot` receives a socket through its `__init__` function.
@@ -145,7 +147,7 @@ Running `pytest` with this test will result in the following failure (since we d
     E       Scenario ended, but not all expectations were met. Pending expectations (ordered):
     [responder.Responder()]
 
-As you can see, Testix complains that it expected the `responder.Responder()`
+As you can see, TestFirst complains that it expected the `responder.Responder()`
 call, but it did not happen.
 
 Let's write the code that passes this test:
@@ -246,11 +248,11 @@ Running this code produces another failure:
     E       unexpected call: sock.recv(4096)
     E       Expected nothing
 
-What happened? Well, while our code does what we want, our test does not actually express what we meant. The test specifies exactly 10 rounds of the loop, so once those are over, and the infinite while loop runs for the 11th time, the `.recv(4096)` is called, and this is not specified in our `Scenario`, so Testix fails the test.
+What happened? Well, while our code does what we want, our test does not actually express what we meant. The test specifies exactly 10 rounds of the loop, so once those are over, and the infinite while loop runs for the 11th time, the `.recv(4096)` is called, and this is not specified in our `Scenario`, so TestFirst fails the test.
 
-Remember, Testix verifies your scenario *exactly*, no more, no less. We've seen the "no less" side of things, now we see the "no more" side.
+Remember, TestFirst verifies your scenario *exactly*, no more, no less. We've seen the "no less" side of things, now we see the "no more" side.
 
-So, how do you test an infinite loop without getting stuck? For this, I use a trick, which also introduces another Testix feature, the `.throwing` expectation. You see, we can not only make mock function calls return what we want, we can make them raise exceptions. Here's the correct test:
+So, how do you test an infinite loop without getting stuck? For this, I use a trick, which also introduces another TestFirst feature, the `.throwing` expectation. You see, we can not only make mock function calls return what we want, we can make them raise exceptions. Here's the correct test:
 
 ```python
 class EndTestException(Exception): pass # dummy exception to end the test
@@ -379,8 +381,8 @@ Compare this `unittest.mock` based version of `test_request_response_loop` from 
 
 In my opinion, at least, the `test_first` based version was better.
 
-* With Testix, Defining how the mocks are called and asserting that they actually were called that way is one and the same. Using `unittest.mock` these are two separate stages, one may easily forget to make some assertions.
-* Testix scenario specification is much more readable, it resembles the code itself.
+* With TestFirst, Defining how the mocks are called and asserting that they actually were called that way is one and the same. Using `unittest.mock` these are two separate stages, one may easily forget to make some assertions.
+* TestFirst scenario specification is much more readable, it resembles the code itself.
 
 # Advanced Features <a name="advanced-features"></a>
 
@@ -389,7 +391,7 @@ There are a few, but for now this is a TODO section.
 # More Info
 
 ### Credit Where it's due
-Testix started as a re-implementation of ideas from the [Voodoo-Mock](http://sourceforge.net/projects/voodoo-mock)
+TestFirst started as a re-implementation of ideas from the [Voodoo-Mock](http://sourceforge.net/projects/voodoo-mock)
 unit-testing framework. Since then it has evolved some different traits though.
 
 ### License

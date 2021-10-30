@@ -1,4 +1,4 @@
-from test_first import testixexception
+from test_first import test_first_exception
 from test_first import hook
 from test_first import scenario_mocks
 from test_first import failhooks
@@ -57,7 +57,7 @@ class Scenario( object ):
             message = self.__effective_title()
             message += f"unexpected call: {call_formatter.format( fakeObjectPath, args, kwargs )}\n"
             message += "Expected nothing" 
-            failhooks.fail( testixexception.ExpectationException, message )
+            failhooks.fail( test_first_exception.ExpectationException, message )
         expected = self.__expected.pop( 0 )
         self.__verifyCallExpected( expected, fakeObjectPath, args, kwargs )
         result = expected.result()
@@ -98,7 +98,7 @@ class Scenario( object ):
             message += '=== END ===\n'
 
 
-            failhooks.fail( testixexception.ExpectationException, message )
+            failhooks.fail( test_first_exception.ExpectationException, message )
 
     @staticmethod
     def current():
@@ -106,10 +106,10 @@ class Scenario( object ):
 
     def __performEndVerifications( self ):
         if len( self.__expected ) > 0:
-            failhooks.fail( testixexception.ScenarioException, f"Scenario ended, but not all expectations were met. Pending expectations (ordered): {self.__expected}" )
+            failhooks.fail( test_first_exception.ScenarioException, f"Scenario ended, but not all expectations were met. Pending expectations (ordered): {self.__expected}" )
         mortalUnordered = [ expectation for expectation in self.__unorderedExpectations if not expectation.everlasting_() ]
         if len( mortalUnordered ) > 0:
-            failhooks.fail( testixexception.ScenarioException, f"Scenario ended, but not all expectations were met. Pending expectations (unordered): {mortalUnordered}" )
+            failhooks.fail( test_first_exception.ScenarioException, f"Scenario ended, but not all expectations were met. Pending expectations (unordered): {mortalUnordered}" )
 
     def __end( self ):
         Scenario._current = None

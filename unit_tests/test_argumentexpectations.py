@@ -3,7 +3,7 @@ import hypothesis.strategies as strategies
 import pytest
 from test_first import fake
 from test_first import scenario
-from test_first import testixexception
+from test_first import test_first_exception
 from test_first import argumentexpectations
 
 class TestArgumentExpectations:
@@ -15,7 +15,7 @@ class TestArgumentExpectations:
             s.some_object( A ) >> 'first'
             s.some_object( B ) >> 'second'
             assert fakeObject( A ) == 'first'
-            with pytest.raises( testixexception.ExpectationException ):
+            with pytest.raises( test_first_exception.ExpectationException ):
                 fakeObject( A )
 
     def test_argument_is_fake_object_with_path( self ):
@@ -49,7 +49,7 @@ class TestArgumentExpectations:
             s.another_object(argumentexpectations.IgnoreCallDetails())
             assert fakeObject( 10 ) == 'first'
             assert fakeObject( "this doens't matter", "this doens'nt either", this='does not matter also', that='neither' ) == 'second'
-            with pytest.raises( testixexception.ExpectationException ):
+            with pytest.raises( test_first_exception.ExpectationException ):
                 fakeObject("this is an unexpected call: verify that IgnoreCallDetails() still leaves the Fake object's path verification intact")
 
     def test_KeywordArguments( self ):
@@ -58,5 +58,5 @@ class TestArgumentExpectations:
             s.some_object( 10, name = 'Lancelot' ).returns( 'first' )
             s.some_object( 11, name = 'Galahad' ).returns( 'second' )
             assert fakeObject( 10, name = 'Lancelot' ) == 'first'
-            with pytest.raises( testixexception.ExpectationException ):
+            with pytest.raises( test_first_exception.ExpectationException ):
                 fakeObject( 11, name = 'not Galahad'  )

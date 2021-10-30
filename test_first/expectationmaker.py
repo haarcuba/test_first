@@ -1,5 +1,5 @@
 from . import call_character
-from test_first import testixexception
+from test_first import test_first_exception
 import test_first.expectations.call
 from test_first import expectations
 import test_first.call_modifiers.synchronous

@@ -2,7 +2,7 @@ import pytest
 import hypothesis
 import hypothesis.strategies as strategies
 from test_first import scenario
-from test_first import testixexception
+from test_first import test_first_exception
 from test_first import hook
 from test_first import fake
 from test_first import DSL
@@ -14,7 +14,7 @@ class TestScenario:
 
     def test_OnlyOneScenarioMayExistAtAnyOneTime( self ):
         with scenario.Scenario() as s:
-            with pytest.raises( testixexception.TestixError ):
+            with pytest.raises( test_first_exception.TestFirstError ):
                 scenario.Scenario()
 
     def test_TwoScenariosOneAfterTheOther( self ):
@@ -48,7 +48,7 @@ class TestScenario:
                 s.another_object( 20, 50 ).returns( 30 )
                 some_object = fake.Fake('some_object')
                 another_object = fake.Fake('another_object')
-                with pytest.raises( testixexception.ExpectationException ):
+                with pytest.raises( test_first_exception.ExpectationException ):
                     another_object( 20, 50 )
 
                 raise PreventScenarioEndVerifications()
@@ -67,7 +67,7 @@ class TestScenario:
             assert another_object( 'X', 'Y' ) == 'Z'
 
     def test_ScenarioEndsPrematurely( self ):
-        with pytest.raises( testixexception.ScenarioException ):
+        with pytest.raises( test_first_exception.ScenarioException ):
             with scenario.Scenario() as s:
                 s.some_object( 10 ).returns( 15 )
                 s.another_object( 20, 50 ).returns( 30 )
@@ -76,7 +76,7 @@ class TestScenario:
                 assert some_object( 10 ) == 15
 
     def test_bugfix_ScenarioEndsPrematurely_With_UnorderedCalls( self ):
-        with pytest.raises( testixexception.ScenarioException ):
+        with pytest.raises( test_first_exception.ScenarioException ):
             with scenario.Scenario() as s:
                 s.some_object( 10 )
                 s.another_object( 20, 50 ).unordered()
@@ -88,7 +88,7 @@ class TestScenario:
         with scenario.Scenario() as s:
             s.some_object( 10 ).returns( 15 )
             some_object = fake.Fake('some_object')
-            with pytest.raises( testixexception.ExpectationException ):
+            with pytest.raises( test_first_exception.ExpectationException ):
                 some_object( 1024 )
 
     def test_ShiftLeftOperator( self ):
@@ -137,7 +137,7 @@ class TestScenario:
             some_object = fake.Fake('some_object')
             some_object( 11 )
             some_object( 10 )
-            with pytest.raises( testixexception.ExpectationException ):
+            with pytest.raises( test_first_exception.ExpectationException ):
                 some_object( 11 )
 
     def test_EverlastingCall( self ):
@@ -186,7 +186,7 @@ class TestScenario:
 
             some_object = fake.Fake('some_object')
             assert some_object( 10 ) == 'ten'
-            with pytest.raises( testixexception.ExpectationException ):
+            with pytest.raises( test_first_exception.ExpectationException ):
                 some_object( 11 )
 
     def test_Hooks( self ):
@@ -231,7 +231,7 @@ class TestScenario:
 
     def test_enforce_use_of_with_statement_with_context_manager_expectation(self):
         locker_mock = fake.Fake('locker')
-        with pytest.raises(testixexception.ScenarioException, match='locker.Lock.*__enter__'):
+        with pytest.raises(test_first_exception.ScenarioException, match='locker.Lock.*__enter__'):
             with scenario.Scenario() as s:
                 s.__with__.locker.Lock()
 
@@ -340,7 +340,7 @@ class TestScenario:
 
     def test_enforce_use_of_with_statement_with_async_context_manager_expectation(self):
         locker_mock = fake.Fake('locker')
-        with pytest.raises(testixexception.ScenarioException, match='locker.Lock.*__aenter__'):
+        with pytest.raises(test_first_exception.ScenarioException, match='locker.Lock.*__aenter__'):
             with scenario.Scenario() as s:
                 s.__async_with__.locker.Lock()
 
@@ -349,7 +349,7 @@ class TestScenario:
     @pytest.mark.asyncio
     async def test_enforce_awaiting_on_async_expectations(self):
         my_file = fake.Fake('my_file')
-        with pytest.raises(testixexception.TestixException):
+        with pytest.raises(test_first_exception.TestFirstException):
             with scenario.Scenario() as s:
                 s.__await_on__.my_file.write('some text')
 

@@ -1,4 +1,4 @@
-from test_first import testixexception
+from test_first import test_first_exception
 
 try:
     import pytest
@@ -24,7 +24,7 @@ def setMode( mode ):
     _fail = FAILS[ mode ]
 
 def error( message ):
-    raise testixexception.TestixError( message )
+    raise test_first_exception.TestFirstError( message )
 
 def fail( exceptionFactory, message ):
     return _fail( exceptionFactory, f'\ntest_first: {exceptionFactory.__name__}\n'
