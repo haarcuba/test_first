@@ -1,8 +1,8 @@
-from testix import argumentexpectations
-from testix import testixexception
-from testix import scenario
-from testix import call_formatter
-from testix import DSL
+from test_first import argumentexpectations
+from test_first import testixexception
+from test_first import scenario
+from test_first import call_formatter
+from test_first import DSL
 
 class Call:
     def __init__( self, fakeObjectPath, modifier, * arguments, ** kwargExpectations ):

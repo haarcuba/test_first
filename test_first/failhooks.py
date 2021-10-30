@@ -1,4 +1,4 @@
-from testix import testixexception
+from test_first import testixexception
 
 try:
     import pytest
@@ -27,6 +27,6 @@ def error( message ):
     raise testixexception.TestixError( message )
 
 def fail( exceptionFactory, message ):
-    return _fail( exceptionFactory, f'\ntestix: {exceptionFactory.__name__}\n'
-                                    f'testix details:\n'
+    return _fail( exceptionFactory, f'\ntest_first: {exceptionFactory.__name__}\n'
+                                    f'test_first details:\n'
                                     f'{message}' )

@@ -1,5 +1,5 @@
-from testix import scenario
-from testix import failhooks
+from test_first import scenario
+from test_first import failhooks
 
 
 class Fake:

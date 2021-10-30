@@ -1,11 +1,11 @@
 import pytest
 import hypothesis
 import hypothesis.strategies as strategies
-from testix import scenario
-from testix import testixexception
-from testix import hook
-from testix import fake
-from testix import DSL
+from test_first import scenario
+from test_first import testixexception
+from test_first import hook
+from test_first import fake
+from test_first import DSL
 
 class TestScenario:
     def test_EmptyScenario( self ):

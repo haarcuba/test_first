@@ -1,10 +1,10 @@
 import hypothesis
 import hypothesis.strategies as strategies
 import pytest
-from testix import fake
-from testix import scenario
-from testix import testixexception
-from testix import argumentexpectations
+from test_first import fake
+from test_first import scenario
+from test_first import testixexception
+from test_first import argumentexpectations
 
 class TestArgumentExpectations:
     @hypothesis.given(A=strategies.integers(),B=strategies.integers())

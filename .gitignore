@@ -5,7 +5,7 @@ diff
 .hypothesis/
 build/
 dist/
-testix.egg-info/
+test_first.egg-info/
 Session.vim
 tags
 htmlcov/

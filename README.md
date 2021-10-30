@@ -3,7 +3,7 @@
 Testix is a Mocking framework for Python, meant to be used with [pytest](https://docs.pytest.org/en/latest/).
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
-[![GitHub release](version.svg)](https://GitHub.com/haarcuba/testix/releases/)
+[![GitHub release](version.svg)](https://GitHub.com/haarcuba/test_first/releases/)
 
 
 Testix is special because it allows you to specify what your mock objects do,
@@ -67,7 +67,7 @@ Continue reading for further examples.
 ## Installation <a name="installation"></a>
 With `pip`:
 
-    $ pip install testix
+    $ pip install test_first
 
 ## Python 3 and Legacy Python (Python 2) <a name="legacy"></a>
 
@@ -103,8 +103,8 @@ Now let's see the unit tests. Our first demand is that a `Chatbot` object genera
 ```python
 import pytest
 import socket
-from testix.frequentlyused import *  # import testix DSL objects e.g. Scenario, Fake
-from testix import patch_module      # a fixture used for patching names at the module level
+from test_first.frequentlyused import *  # import test_first DSL objects e.g. Scenario, Fake
+from test_first import patch_module      # a fixture used for patching names at the module level
 from chatbot import chatbot          # the module under test
 
 class TestChatbot:
@@ -140,8 +140,8 @@ Running `pytest` with this test will result in the following failure (since we d
         def _fail_py_test( exceptionFactory, message ):
     >       return pytest.fail( message )
     E       Failed:
-    E       testix: ScenarioException
-    E       testix details:
+    E       test_first: ScenarioException
+    E       test_first details:
     E       Scenario ended, but not all expectations were met. Pending expectations (ordered):
     [responder.Responder()]
 
@@ -241,8 +241,8 @@ Running this code produces another failure:
         def _fail_py_test( exceptionFactory, message ):
     >       return pytest.fail( message )
     E       Failed:
-    E       testix: ExpectationException
-    E       testix details:
+    E       test_first: ExpectationException
+    E       test_first details:
     E       unexpected call: sock.recv(4096)
     E       Expected nothing
 
@@ -377,7 +377,7 @@ Compare this `unittest.mock` based version of `test_request_response_loop` from 
         sock.send.assert_has_calls( [ call( response ) for response in RESPONSES ] )
 ```
 
-In my opinion, at least, the `testix` based version was better.
+In my opinion, at least, the `test_first` based version was better.
 
 * With Testix, Defining how the mocks are called and asserting that they actually were called that way is one and the same. Using `unittest.mock` these are two separate stages, one may easily forget to make some assertions.
 * Testix scenario specification is much more readable, it resembles the code itself.

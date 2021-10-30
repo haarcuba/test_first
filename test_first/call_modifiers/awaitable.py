@@ -1,6 +1,6 @@
 import uuid
-from testix import fake
-from testix import fake_privacy_violator
+from test_first import fake
+from test_first import fake_privacy_violator
 from . import base
 
 class Awaitable(base.Base):

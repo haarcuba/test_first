@@ -1,8 +1,8 @@
 import hypothesis
 import hypothesis.strategies as strategies
 import pytest
-from testix import fake
-from testix import testixexception
+from test_first import fake
+from test_first import testixexception
 
 class TestFakeObject:
     @hypothesis.given(text=strategies.text())

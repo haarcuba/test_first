@@ -1,7 +1,7 @@
 import pytest
-from testix import fake
+from test_first import fake
 
-_SENTINEL = 'testix-sentinel-a72004be-7a66-42f5-bdcf-7d71eb7283e3'
+_SENTINEL = 'test_first-sentinel-a72004be-7a66-42f5-bdcf-7d71eb7283e3'
 
 class Patcher:
     def __init__(self):
