@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "test_first"
-version = "8.0.1"
+version = "8.0.2rc1"
 description = "Test First Python Mocking Framework designed especially for TDD"
 authors = ["Yoav Kleinberger <haarcuba@gmail.com>"]
 license = "MIT"
