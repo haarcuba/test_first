@@ -13,4 +13,4 @@ jobs:
             - run:  rm -fr dist/
             - run:  poetry build -f wheel
             - run:  ls dist/*whl
-            - run:  poetry run twine upload -u __token__ -p ${{ secrets.PUBLISH_TOKEN }} dist/*whl
+            - run:  echo poetry run twine upload -u __token__ -p ${{ secrets.PUBLISH_TOKEN }} dist/*whl
