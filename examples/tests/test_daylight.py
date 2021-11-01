@@ -16,9 +16,9 @@ class Test_Daylight:
         with Scenario() as s:
             fakeDay = FakeDay()
             fakeDay.hour = 12
-            s.datetime.date.today().returns( fakeDay )
-            s.datetime.datetime.today().returns( fakeDay )
-            s.datetime.timedelta( IgnoreArgument() ).returns( FakeDay() )
+            s.datetime.date.today() >> fakeDay
+            s.datetime.datetime.today() >> fakeDay
+            s.datetime.timedelta(IgnoreArgument()) >> FakeDay()
             nextDay = daylight.nextDaylightDate()
             assert nextDay is not fakeDay
 
