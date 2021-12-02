@@ -3,7 +3,7 @@ from test_first import fake_privacy_violator
 import uuid
 from . import base
 
-class Synchronous(base.Base):
+class SyncContext(base.Base):
     def __init__(self, call):
         self.__result = None
         id = str(uuid.uuid4())[-12:]
@@ -30,4 +30,4 @@ class Synchronous(base.Base):
         return self
 
     def __repr__(self):
-        return f'Synchronous({self.__result})'
+        return f'SyncContext({self.__result})'
