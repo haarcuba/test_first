@@ -1,7 +1,10 @@
 from test_first import fake
 from test_first import fake_privacy_violator
+import test_first.expectations.call
+from test_first import expectations
 import uuid
 from . import base
+from . import trivial
 
 class AsyncContext(base.Base):
     def __init__(self, call):
@@ -17,8 +20,9 @@ class AsyncContext(base.Base):
         pass
 
     @property
-    def extra_path(self):
-        return fake_privacy_violator.path(self.__aenter_mock)
+    def further_expectation(self):
+        path = fake_privacy_violator.path(self.__aenter_mock)
+        return expectations.call.Call(path, trivial.Trivial)
 
     def set_result(self, value):
         self.__result = value

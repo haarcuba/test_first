@@ -1,4 +1,6 @@
 import abc
+import test_first.expectations.call
+from test_first import expectations
 
 class Base(abc.ABC):
     @abc.abstractmethod
@@ -19,5 +21,5 @@ class Base(abc.ABC):
 
     @property
     @abc.abstractmethod
-    def extra_path(self):
+    def further_expectation(self) -> expectations.call.Call:
         pass

@@ -22,9 +22,8 @@ class ExpectationMaker:
     def __call__(self, *args, **kwargs):
         call = self.__generate_expectation(*args, **kwargs)
         self.__scenario.addEvent(call)
-        if call.extra_path is not None:
-            extra = expectations.call.Call(call.extra_path, call_modifiers.trivial.Trivial)
-            self.__scenario.addEvent(extra)
+        if call.further_expectation is not None:
+            self.__scenario.addEvent(call.further_expectation)
         return call
 
     def __generate_expectation(self, *args, **kwargs):

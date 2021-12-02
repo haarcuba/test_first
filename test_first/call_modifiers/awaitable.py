@@ -2,6 +2,9 @@ import uuid
 from test_first import fake
 from test_first import fake_privacy_violator
 from . import base
+from . import trivial
+import test_first.expectations.call
+from test_first import expectations
 
 class Awaitable(base.Base):
     def __init__(self, call):
@@ -27,5 +30,6 @@ class Awaitable(base.Base):
         self.__exception_factory = exception_factory
 
     @property
-    def extra_path(self):
-        return fake_privacy_violator.path(self.__await_mock)
+    def further_expectation(self):
+        path = fake_privacy_violator.path(self.__await_mock)
+        return expectations.call.Call(path, trivial.Trivial)

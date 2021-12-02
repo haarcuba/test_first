@@ -17,5 +17,5 @@ class Trivial(base.Base):
         self.__exception_factory = exception_factory
 
     @property
-    def extra_path(self):
+    def further_expectation(self):
         return None
