@@ -14,8 +14,8 @@ class Call:
         self.__modifier = modifier(self)
 
     @property
-    def extra_path(self):
-        return self.__modifier.extra_path
+    def further_expectation(self):
+        return self.__modifier.further_expectation
 
     def returns(self, result):
         self.__modifier.set_result(result)
